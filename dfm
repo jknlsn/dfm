@@ -43,9 +43,9 @@ fi
 function update(){
     rm ~/.Brewfile
     brew bundle dump --global
-    dotfiles add ~/.Brewfile
-    dotfiles commit -m "Update dotfiles and installs" -a
-    dotfiles push
+    dfm add ~/.Brewfile
+    dfm commit -m "Update dotfiles and installs" -a
+    dfm push
 }
 
 function create(){
@@ -67,9 +67,9 @@ function create(){
     #     dotfiles push
     # fi
 
-    dotfiles add $1
-    dotfiles commit -m "Added $1"
-    dotfiles push
+    dfm add $1
+    dfm commit -m "Added $1"
+    dfm push
 }
 
 function install(){
@@ -78,7 +78,7 @@ function install(){
 
 function help(){
     echo "
-Usage: dotfiles [command]
+Usage: dfm [command]
     [ u | update | -u | --update ]
     [ i | install | -i | --install ]
     [ c | create | -c | --create ] [ filename ]
@@ -109,7 +109,7 @@ else
         c | create | -c | --create )
             if [[ $# < 2 ]];
             then
-                echo "Please specify an argument i.e. \ndotfiles -c .filename"
+                echo "Please specify an argument i.e. \ndfm -c .filename"
             else
                 create $2
                 # create $@
