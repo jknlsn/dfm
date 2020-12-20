@@ -8,11 +8,11 @@ Automates how I want to manage my dotfiles in git, as seen here [https://gitlab.
 
 ### Usage
 
-dfm [command]
-[ u | update | -u | --update ]
-[ i | install | -i | --install ]
-[ c | create | -c | --create ] [ filename ]
-[ h | help | -h | --help ]
+    dfm [command]
+    [ u | update | -u | --update ]
+    [ i | install | -i | --install ]
+    [ c | create | -c | --create ] [ filename ]
+    [ h | help | -h | --help ]
 
     update:     push changes to brew installs or watched files to git
     install:    install from brew config file
