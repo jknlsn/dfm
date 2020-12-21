@@ -14,6 +14,15 @@ Install xcode command line tools, homebrew and zinit.
 2. `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 3. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"`
 
+### Quick Start
+
+After pre-requisites are installed add the following to the end of your `.zshrc` file. this will install DFM (Dot Files Manager) and you can then start using dfm to manage your dotfiles and brew installs.
+
+```
+zinit ice depth=1;
+zinit light jknlsn/dfm
+```
+
 Pull the files down and configure your dotfiles repo, or create an empty repo.
 
 ```
@@ -23,19 +32,7 @@ git --git-dir=$HOME/.dotfiles/ config core.worktree $HOME
 git --git-dir=$HOME/.dotfiles/ checkout -f
 ```
 
-Source the zshrc config.
-`source .zshrc`
-
 From now on can use `dfm` commands to install brew packages or to update the list of installed brew packages and sync it to this repo.
-
-### Quick Start
-
-After pre-requisites are installed add the following to the end of your `.zshrc` file. this will install DFM (Dot Files Manager) and you can then start using dfm to manage your dotfiles and brew installs.
-
-```
-zinit ice depth=1;
-zinit light jknlsn/dfm
-```
 
 ### Usage
 
