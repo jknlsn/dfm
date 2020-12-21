@@ -2,15 +2,17 @@
 
 This is a super simple dot file manager. It works for me, your mileage may vary!
 
-This automates how I want to manage my dotfiles in git, as seen here [https://gitlab.com/jknlsn/dotfiles](https://gitlab.com/jknlsn/dotfiles)
+This automates how I want to manage my dotfiles in git, as seen here [https://github.com/jknlsn/dotfiles](https://github.com/jknlsn/dotfiles)
 
 ### Pre-requisites
 
 Install xcode command line tools, homebrew and zinit.
 
-1. `xcode-select --install`
-2. `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-3. `sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"`
+```
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+```
 
 ### Quick Start
 
@@ -21,7 +23,7 @@ zinit ice depth=1;
 zinit light jknlsn/dfm
 ```
 
-Pull the files down and configure your dotfiles repo, or create an empty repo. Replace my gitlab URL with the URL to your own repo.
+Pull the files down and configure your dotfiles repo, or create an empty repo. Replace my repo URL with the URL to your own repo.
 
 ```
 git clone --bare git@gitlab.com:jknlsn/dotfiles.git $HOME/.dotfiles
