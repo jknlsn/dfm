@@ -21,7 +21,7 @@ zinit ice depth=1;
 zinit light jknlsn/dfm
 ```
 
-Pull the files down and configure your dotfiles repo, or create an empty repo.
+Pull the files down and configure your dotfiles repo, or create an empty repo. Replace my gitlab URL with the URL to your own repo.
 
 ```
 git clone --bare git@gitlab.com:jknlsn/dotfiles.git $HOME/.dotfiles
