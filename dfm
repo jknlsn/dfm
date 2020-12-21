@@ -119,7 +119,7 @@ else
             help
             ;;
         * )
-            /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $argv
+            git --git-dir=$HOME/.dotfiles/ $argv
             ;;
     esac
 
