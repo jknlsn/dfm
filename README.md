@@ -1,10 +1,8 @@
 # dfm - Dot Files Manager
 
-## **works for me ymmv**
+This is a super simple dot file manager. It works for me, your mileage may vary!
 
-This is a super simple dot file manager.
-
-Automates how I want to manage my dotfiles in git, as seen here [https://gitlab.com/jknlsn/dotfiles](https://gitlab.com/jknlsn/dotfiles)
+This automates how I want to manage my dotfiles in git, as seen here [https://gitlab.com/jknlsn/dotfiles](https://gitlab.com/jknlsn/dotfiles)
 
 ### Pre-requisites
 
@@ -60,13 +58,24 @@ Find and install a brew package, for example the hotkey package [skhd](https://g
 brew install koekeishiya/formulae/skhd
 code-insiders .skhdrc
 dfm create .skhdrc
+dfm update
 ```
 
-```
-brew install jesseduffield/lazygit/lazygit
-```
+That's it you're done! You will see a similar message to the below from git confirming your file updates.
 
-That's it you're done! You will see a similar message from git confirming your file updates.
+```
+Updating Homebrew...
+[master 1adea30] Update dotfiles and installs
+ 1 file changed, 2 insertions(+)
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 360 bytes | 360.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+To gitlab.com:jknlsn/dotfiles.git
+   65bd87d..1adea30  master -> master
+```
 
 ### Notes
 
