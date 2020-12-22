@@ -120,7 +120,6 @@ else
             ;;
         * )
             git --git-dir=$HOME/.dotfiles/ $argv
-            echo "Remember to use \"dfm\" instead of \"git\" in any suggested commands"
             ;;
     esac
 
