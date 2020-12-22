@@ -79,6 +79,14 @@ To gitlab.com:jknlsn/dotfiles.git
    65bd87d..1adea30  master -> master
 ```
 
+### Tips
+
+#### Disable showing untracked directories and files when running dfm status
+
+```
+dfm  config --local status.showUntrackedFiles no
+```
+
 ### Notes
 
 This is a **simple** dot files manager. It does not control your whole system, so for packages like yabai which require SIP modifications and skhd which requires accessibility permissions, there will still be manual steps before you are 100% up and running, but this will get you pretty close.
