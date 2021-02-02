@@ -39,17 +39,15 @@ From now on can use `dfm` commands to install brew packages or to update the lis
     dfm [command]
     [ u | update | -u | --update ]
     [ i | install | -i | --install ]
-    [ c | create | -c | --create ] [ filename ]
+    [ a | add | -a | --add ] [ filename ]
+    [ s | status | -s | --status ]
     [ h | help | -h | --help ]
 
     update:     push changes to brew installs or watched files to git
     install:    install from brew config file
-    create:     add new dotfile and push
+    add:        add new dotfile
+    status:     show changes
     help:       display manual
-
-Any other arguments fall through to git, i.e. dotfiles status
-
-Use 'git --help' to access general git help.
 
 ### Example workflow and usage
 
@@ -59,7 +57,7 @@ Find and install a brew package, for example the hotkey package [skhd](https://g
 ```
 brew install koekeishiya/formulae/skhd
 code-insiders .skhdrc
-dfm create .skhdrc
+dfm add .skhdrc
 dfm update
 ```
 
@@ -84,9 +82,15 @@ To gitlab.com:jknlsn/dotfiles.git
 #### Disable showing untracked directories and files when running dfm status
 
 ```
-dfm  config --local status.showUntrackedFiles no
+git config --local status.showUntrackedFiles no
 ```
 
 ### Notes
 
 This is a **simple** dot files manager. It does not control your whole system, so for packages like yabai which require SIP modifications and skhd which requires accessibility permissions, there will still be manual steps before you are 100% up and running, but this will get you pretty close.
+
+Inspired by the following:
+
+- [https://www.ackama.com/blog/posts/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained](https://www.ackama.com/blog/posts/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained)
+- [https://github.com/kalkayan/dotfiles](https://github.com/kalkayan/dotfiles)
+- [https://www.atlassian.com/git/tutorials/dotfiles](https://www.atlassian.com/git/tutorials/dotfiles)

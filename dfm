@@ -41,39 +41,48 @@ fi
 
 
 function update(){
-    rm ~/.Brewfile
-    brew bundle dump --global
-    dfm add ~/.Brewfile
-    dfm commit -m "Update dotfiles and installs" -a
-    dfm push
+    # Check git status update
+    # Check brewfile for changes
+    local message="Update dotfiles and installs"
+    
+    brew bundle dump --file ~/.Brewfile.temp
+    local output=$(diff ~/.Brewfile ~/.Brewfile.temp)
+    rm ~/.Brewfile.temp
+    if [[ -z $output ]]; then
+        echo "No changes"
+    else
+        git --git-dir=$HOME/.dotfiles/ add ~/.Brewfile
+        rm ~/.Brewfile
+        brew bundle dump --global
+        # Remove newlines and turn < > into - +
+        message=$(echo $output | tail -n +2 | sed -e :a -e '$!N;s/\n/|/;ta' | sed 's/|[a-zA-Z0-9]*|/ /g' | sed 's/</-/g;s/>/+/g')
+        echo $message
+    fi
+
+    git --git-dir=$HOME/.dotfiles/ commit -m $message -a
+    git --git-dir=$HOME/.dotfiles/ push
 }
 
-function create(){
-
-    # arr="$@"
-    # msg="Added "
-
-    # echo $arr
-
-    # for (( i=1; i < ${#arr[@]} ; i++ )); do
-        # dotfiles add $arr[$i]
-        # msg+=arr[$i]
-        # echo $arr[$i]
-    # done
-
-    # if [[ msg != "Added " ]];
-    # then
-    #     dotfiles commit -m $msg
-    #     dotfiles push
-    # fi
-
-    dfm add $1
-    dfm commit -m "Added $1"
-    dfm push
+function add(){
+    git --git-dir=$HOME/.dotfiles/ add $1
+    git --git-dir=$HOME/.dotfiles/ commit -m "Added $1"
+    git --git-dir=$HOME/.dotfiles/ push
 }
 
 function install(){
     brew bundle install --global
+}
+
+function status(){
+    git --git-dir=$HOME/.dotfiles/ status
+    brew bundle dump --file ~/.Brewfile.temp
+    local output=$(diff ~/.Brewfile ~/.Brewfile.temp)
+    rm ~/.Brewfile.temp
+    if [[ -z $output ]]; then
+        echo "No changes"
+    else
+        echo $output | sed 's/</-/g;s/>/+/g'
+    fi
 }
 
 function help(){
@@ -81,46 +90,38 @@ function help(){
 Usage: dfm [command]
     [ u | update | -u | --update ]
     [ i | install | -i | --install ]
-    [ c | create | -c | --create ] [ filename ]
+    [ a | add | -a | --add ] [ filename ]
+    [ s | status | -s | --status ]
     [ h | help | -h | --help ]
 
     update:     push changes to brew installs or watched files to git
     install:    install from brew config file
-    create:     add new dotfile and push
+    add:        add new dotfile
+    status:     show changes
     help:       display manual
-
-Any other arguments fall through to git, i.e. dotfiles status
-
-Use 'git --help' to access general git help.
     "
 }
 
-if [[ $argv = "add ." ]]; then
-    echo "Nope, you don't want to add all files."
-else
-
-    case "$1" in
-        u | update | -u | --update )
-            update
-            ;;
-        i | install | -i | --install )
-            install
-            ;;
-        c | create | -c | --create )
-            if [[ $# < 2 ]];
-            then
-                echo "Please specify an argument i.e. \ndfm -c .filename"
-            else
-                create $2
-                # create $@
-            fi;
-            ;;
-        h | help | -h | --help )
-            help
-            ;;
-        * )
-            git --git-dir=$HOME/.dotfiles/ $argv
-            ;;
-    esac
-
-fi
+case "$1" in
+    u | update | -u | --update )
+        update
+        ;;
+    i | install | -i | --install )
+        install
+        ;;
+    s | status | -s | --status )
+        status
+        ;;
+    a | add | -a | --add )
+        if [[ $# < 2 ]];
+        then
+            echo "Please specify an argument i.e. \ndfm -c .filename"
+        else
+            create $2
+            # create $@
+        fi;
+        ;;
+    h | help | -h | --help )
+        help
+        ;;
+esac
