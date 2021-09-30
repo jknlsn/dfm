@@ -74,7 +74,7 @@ function install(){
 }
 
 function status(){
-    git --git-dir=$HOME/.dotfiles/ status
+    git --git-dir=$HOME/.dotfiles/ status -uno
     brew bundle dump --file ~/.Brewfile.temp
     local output=$(diff ~/.Brewfile ~/.Brewfile.temp)
     rm ~/.Brewfile.temp
